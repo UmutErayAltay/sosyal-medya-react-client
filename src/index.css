@@ -7,16 +7,18 @@
   --color-paper: #f7f3ea;
   --color-paper-line: #cabfa4;
   --color-ink: #1c1710;
-  --color-ink-soft: #6b5f4a;
+  --color-ink-soft: #4f4636;
   --color-accent: #c1440e;
   --color-accent-soft: #e8ceb8;
   --font-mono-chrome: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 body {
   margin: 0;
   background: var(--color-paper);
   color: var(--color-ink);
+  font-family: var(--font-sans);
 }
 
 /* Ruled-paper ground, used behind the composer's textarea. */
@@ -30,9 +32,23 @@ body {
   background-attachment: local;
 }
 
-/* Signature interaction: a count ticks (scale + ink flash) on change instead
-   of snapping instantly — donated from the declined nixie-counter world. */
+/* Signature interaction: a count ticks (scale pulse) on change instead of
+   snapping instantly — donated from the declined nixie-counter world.
+   Applied to every count that changes (likes, comments, follower/following/
+   post stats). Plain ink scale by default; the accent flash variant is used
+   ONLY on the like count, where the color is already the liked-state accent
+   — every other counter stays ink-only so the accent stays reserved for the
+   liked state, not a general "something changed" signal. */
 @keyframes tick {
+  0% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes tick-accent {
   0% {
     transform: scale(1.35);
     color: var(--color-accent);
@@ -45,4 +61,9 @@ body {
 .tick {
   display: inline-block;
   animation: tick 260ms ease-out;
+}
+
+.tick-accent {
+  display: inline-block;
+  animation: tick-accent 260ms ease-out;
 }

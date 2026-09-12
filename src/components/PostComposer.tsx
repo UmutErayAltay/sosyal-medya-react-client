@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { api } from "../lib/api";
-import { describeApiError } from "./StateViews";
+import { InlineError, describeApiError } from "./StateViews";
 
 export function PostComposer() {
   const [content, setContent] = useState("");
@@ -32,14 +32,10 @@ export function PostComposer() {
         placeholder="Neler oluyor?"
         rows={3}
         maxLength={2000}
-        className="ruled w-full resize-none border-0 p-0 leading-7 text-ink placeholder:text-ink-soft/60 focus:outline-none"
+        className="ruled w-full resize-none border-0 p-0 leading-7 text-ink placeholder:text-ink-soft focus:outline-none"
       />
       <div className="mt-2 flex items-center justify-between border-t border-ink/10 pt-2">
-        {mutation.isError ? (
-          <span className="font-mono-chrome text-xs text-accent">{describeApiError(mutation.error)}</span>
-        ) : (
-          <span />
-        )}
+        {mutation.isError ? <InlineError>{describeApiError(mutation.error)}</InlineError> : <span />}
         <button
           type="submit"
           disabled={!content.trim() || mutation.isPending}

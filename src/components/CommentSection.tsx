@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../lib/api";
 import type { Comment } from "../types/api";
-import { describeApiError } from "./StateViews";
+import { InlineError, describeApiError } from "./StateViews";
 
 function CommentItem({ comment }: { comment: Comment }) {
   return (
@@ -51,7 +51,7 @@ export function CommentSection({ postId, comments }: { postId: string; comments:
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="yorum yaz…"
-          className="flex-1 border-0 border-b border-ink/25 bg-transparent px-0 py-1.5 text-sm text-ink placeholder:text-ink-soft/60 focus:border-ink focus:outline-none"
+          className="flex-1 border-0 border-b border-ink/25 bg-transparent px-0 py-1.5 text-sm text-ink placeholder:text-ink-soft focus:border-ink focus:outline-none"
         />
         <button
           type="submit"
@@ -62,7 +62,9 @@ export function CommentSection({ postId, comments }: { postId: string; comments:
         </button>
       </form>
       {mutation.isError && (
-        <p className="pb-2 font-mono-chrome text-xs text-accent">{describeApiError(mutation.error)}</p>
+        <div className="pb-2">
+          <InlineError>{describeApiError(mutation.error)}</InlineError>
+        </div>
       )}
       {comments.map((comment) => (
         <CommentItem key={comment.id} comment={comment} />

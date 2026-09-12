@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { ApiError } from "../lib/api";
 
 const ERROR_MESSAGES: Record<string, string> = {
@@ -27,15 +28,24 @@ export function LoadingState({ label = "yükleniyor…" }: { label?: string }) {
   );
 }
 
+/** A margin-correction-note treatment, not a color alert: the accent is
+ * reserved for the liked state, so errors stay ink-only (a thick left rule
+ * + a "// " prefix reads as an annotation in the log, not a status color). */
+export function InlineError({ children }: { children: ReactNode }) {
+  return (
+    <p className="border-l-2 border-ink pl-2 font-mono-chrome text-xs text-ink">// {children}</p>
+  );
+}
+
 export function ErrorState({ error, onRetry }: { error: unknown; onRetry?: () => void }) {
   return (
-    <div className="mx-auto max-w-sm border border-accent/40 bg-accent-soft/40 px-4 py-6 text-center">
-      <p className="font-mono-chrome text-xs text-accent">{describeApiError(error)}</p>
+    <div className="mx-auto max-w-sm border-l-2 border-ink py-2 pl-4 text-left">
+      <p className="font-mono-chrome text-xs text-ink">// {describeApiError(error)}</p>
       {onRetry && (
         <button
           type="button"
           onClick={onRetry}
-          className="mt-3 border border-accent/50 px-3 py-1 font-mono-chrome text-xs text-accent hover:bg-accent hover:text-paper"
+          className="mt-3 border border-ink/40 px-3 py-1 font-mono-chrome text-xs text-ink hover:border-ink"
         >
           tekrar dene
         </button>

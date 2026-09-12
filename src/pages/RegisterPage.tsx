@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { describeApiError } from "../components/StateViews";
+import { InlineError, describeApiError } from "../components/StateViews";
 
 export function RegisterPage() {
   const { register } = useAuth();
@@ -61,7 +61,7 @@ export function RegisterPage() {
             className="border-0 border-b border-ink/25 bg-transparent px-0 py-1.5 text-ink focus:border-ink focus:outline-none"
           />
         </label>
-        {error && <p className="font-mono-chrome text-xs text-accent">{error}</p>}
+        {error && <InlineError>{error}</InlineError>}
         <button
           type="submit"
           disabled={submitting}

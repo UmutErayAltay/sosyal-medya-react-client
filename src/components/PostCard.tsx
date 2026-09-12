@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../lib/api";
 import type { Post } from "../types/api";
+import { CommentStamp, LikeStamp } from "./icons";
+import { TickingCount } from "./TickingCount";
 
 function timeAgo(iso: string): string {
   const seconds = Math.max(0, Math.floor((Date.now() - new Date(iso).getTime()) / 1000));
@@ -12,16 +14,6 @@ function timeAgo(iso: string): string {
   const hours = Math.floor(minutes / 60);
   if (hours < 24) return `${hours}sa`;
   return `${Math.floor(hours / 24)}g`;
-}
-
-/** A count that visibly ticks (scale + ink flash) on change instead of
- * snapping — the signature interaction donated from the nixie-counter world. */
-function TickingCount({ value }: { value: number }) {
-  return (
-    <span key={value} className="tick font-mono-chrome tabular-nums">
-      {value}
-    </span>
-  );
 }
 
 export function PostCard({ post }: { post: Post }) {
@@ -73,15 +65,15 @@ export function PostCard({ post }: { post: Post }) {
           onClick={handleLike}
           className={`flex items-center gap-1.5 border border-ink/20 px-2 py-1 hover:border-ink ${liked ? "border-accent text-accent" : ""}`}
         >
-          <span>{liked ? "♥" : "♡"}</span>
-          <TickingCount value={count} />
+          <LikeStamp filled={liked} />
+          <TickingCount value={count} accent />
         </button>
         <Link
           to={`/post/${post.id}`}
           className="flex items-center gap-1.5 border border-ink/20 px-2 py-1 hover:border-ink"
         >
-          <span>✎</span>
-          <span className="tabular-nums">{post.comment_count}</span>
+          <CommentStamp />
+          <TickingCount value={post.comment_count} />
         </Link>
       </div>
     </article>

@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { PostCard } from "../components/PostCard";
 import { ErrorState, LoadingState } from "../components/StateViews";
+import { TickingCount } from "../components/TickingCount";
 import { useAuth } from "../context/AuthContext";
 import { api } from "../lib/api";
 import type { ProfileResponse } from "../types/api";
@@ -63,13 +64,22 @@ export function ProfilePage() {
         </div>
         <div className="mt-4 flex gap-6 font-mono-chrome text-xs text-ink-soft">
           <span>
-            <strong className="text-ink">{data.posts.length}</strong> gönderi
+            <strong className="text-ink">
+              <TickingCount value={data.posts.length} />
+            </strong>{" "}
+            gönderi
           </span>
           <span>
-            <strong className="text-ink">{data.followers_count}</strong> takipçi
+            <strong className="text-ink">
+              <TickingCount value={data.followers_count} />
+            </strong>{" "}
+            takipçi
           </span>
           <span>
-            <strong className="text-ink">{data.following_count}</strong> takip
+            <strong className="text-ink">
+              <TickingCount value={data.following_count} />
+            </strong>{" "}
+            takip
           </span>
         </div>
       </div>
