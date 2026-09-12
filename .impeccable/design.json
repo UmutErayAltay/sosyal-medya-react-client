@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-12T01:20:38Z",
+  "title": "Design System: sosyal.log",
+  "extensions": {
+    "colorMeta": {
+      "accent": { "role": "primary", "displayName": "Fountain-Pen Accent", "canonical": "#c1440e", "tonalRamp": ["#3a1405", "#5c200a", "#7e2c0e", "#a03812", "#c1440e", "#d97442", "#e8a583", "#f3d3c1"] },
+      "paper": { "role": "neutral", "displayName": "Warm Paper", "canonical": "#f7f3ea", "tonalRamp": ["#3a3527", "#5c563e", "#7d7656", "#a19a76", "#c4bc9a", "#dcd6bf", "#ede8dc", "#f7f3ea"] },
+      "paper-line": { "role": "neutral", "displayName": "Paper Rule", "canonical": "#cabfa4", "tonalRamp": ["#332e21", "#544c37", "#756a4c", "#968862", "#b6a67c", "#cabfa4", "#dcd4c1", "#eee9df"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#1c1710", "tonalRamp": ["#0e0b08", "#1c1710", "#332a1e", "#4f4636", "#6d6250", "#8c826d", "#aca38d", "#cec6b3"] },
+      "ink-soft": { "role": "neutral", "displayName": "Ink Soft", "canonical": "#4f4636", "tonalRamp": ["#221d16", "#382f24", "#4f4636", "#685d49", "#82755d", "#9d8f74", "#b9ab8d", "#d6c9a9"] },
+      "accent-soft": { "role": "neutral", "displayName": "Accent Soft (declared, unexercised)", "canonical": "#e8ceb8", "tonalRamp": ["#4a2f18", "#6f4726", "#946037", "#b5804f", "#d1a578", "#e8ceb8", "#f1e0d2", "#f8efe7"] }
+    },
+    "typographyMeta": {
+      "body": { "displayName": "Body (Sans)", "purpose": "Post content, bio, comment text — anything a person wrote." },
+      "chrome": { "displayName": "Chrome (Mono)", "purpose": "Structural metadata: timestamps, handles, counts, nav, error text." },
+      "chrome-label": { "displayName": "Chrome Label (Mono, uppercase)", "purpose": "Form field labels and micro-headers, e.g. 'yeni kayıt', 'e-posta'." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "tick", "value": "260ms ease-out, transform: scale(1.35) -> scale(1)", "purpose": "Plays whenever a non-like count changes (comments, followers, following, post count)." },
+      { "name": "tick-accent", "value": "260ms ease-out, transform: scale(1.35) -> scale(1), color flashes to accent then settles", "purpose": "Plays only on the like count when it changes; the only counter allowed to touch the accent color." }
+    ],
+    "breakpoints": []
+  },
+  "components": [
+    {
+      "name": "Primary Button (default)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Rest state of the app's one button style: submit, follow, retry.",
+      "html": "<button class=\"ds-btn-primary\">paylaş</button>",
+      "css": ".ds-btn-primary { background: transparent; color: #1c1710; border: 1px solid #1c1710; padding: 8px 16px; font-size: 0.875rem; font-weight: 500; transition: background 0.15s, color 0.15s; } .ds-btn-primary:hover { background: #1c1710; color: #f7f3ea; } .ds-btn-primary:focus-visible { outline: 1px solid #1c1710; outline-offset: 2px; } .ds-btn-primary:disabled { cursor: not-allowed; border-color: rgba(28,23,16,0.25); color: #4f4636; background: transparent; }"
+    },
+    {
+      "name": "Like Button (active/liked)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one control in the system that carries the accent color, only when liked=true.",
+      "html": "<button class=\"ds-btn-like ds-btn-like--liked\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 15 15\" fill=\"none\" aria-hidden=\"true\"><circle cx=\"7.5\" cy=\"7.5\" r=\"6.6\" stroke=\"currentColor\" stroke-width=\"1.1\"/><path d=\"M7.5 10.3 4.9 7.8a1.7 1.7 0 0 1 2.4-2.4l.2.2.2-.2a1.7 1.7 0 0 1 2.4 2.4z\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"1\" stroke-linejoin=\"round\"/></svg><span class=\"ds-tick-accent\">12</span></button>",
+      "css": ".ds-btn-like { display: flex; align-items: center; gap: 6px; border: 1px solid rgba(28,23,16,0.2); padding: 4px 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.75rem; background: transparent; color: #1c1710; } .ds-btn-like:hover { border-color: #1c1710; } .ds-btn-like--liked { border-color: #c1440e; color: #c1440e; } .ds-tick-accent { display: inline-block; }"
+    },
+    {
+      "name": "Underline Input",
+      "kind": "input",
+      "refersTo": "input-underline",
+      "description": "Auth-form and comment field: bottom-border-only, no box, transparent.",
+      "html": "<input class=\"ds-input-underline\" type=\"email\" placeholder=\"\" />",
+      "css": ".ds-input-underline { border: none; border-bottom: 1px solid rgba(28,23,16,0.25); background: transparent; padding: 6px 0; color: #1c1710; font-size: 0.875rem; } .ds-input-underline::placeholder { color: #4f4636; } .ds-input-underline:focus { border-bottom-color: #1c1710; outline: none; }"
+    },
+    {
+      "name": "Navbar",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Single hairline-bottomed bar; sans wordmark, mono chrome links.",
+      "html": "<header class=\"ds-navbar\"><a class=\"ds-navbar-mark\" href=\"/\">sosyal.log</a><nav class=\"ds-navbar-links\"><a href=\"/profile/me\">@me</a><button class=\"ds-navbar-logout\">çıkış</button></nav></header>",
+      "css": ".ds-navbar { border-bottom: 1px solid rgba(28,23,16,0.15); background: #f7f3ea; display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; } .ds-navbar-mark { font-family: \"Public Sans\", system-ui, sans-serif; font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; color: #1c1710; text-decoration: none; } .ds-navbar-links { display: flex; align-items: center; gap: 16px; font-family: ui-monospace, monospace; font-size: 0.75rem; color: #4f4636; } .ds-navbar-links a:hover { color: #1c1710; } .ds-navbar-logout { border: 1px solid rgba(28,23,16,0.25); background: transparent; padding: 4px 8px; color: inherit; } .ds-navbar-logout:hover { border-color: #1c1710; color: #1c1710; }"
+    },
+    {
+      "name": "Log Entry (Post Card)",
+      "kind": "card",
+      "refersTo": "custom",
+      "description": "Signature component: flush-left dated entry, hairline-closed, no card boundary.",
+      "html": "<article class=\"ds-entry\"><div class=\"ds-entry-head\"><img class=\"ds-entry-avatar\" alt=\"\" /><a class=\"ds-entry-handle\" href=\"#\">@umut</a><span class=\"ds-entry-time\">· 3dk</span></div><p class=\"ds-entry-content\">Bugün ilk gönderiyi attım.</p></article>",
+      "css": ".ds-entry { border-bottom: 1px solid rgba(28,23,16,0.15); padding: 16px; } .ds-entry-head { display: flex; align-items: baseline; gap: 8px; } .ds-entry-avatar { height: 28px; width: 28px; border-radius: 9999px; border: 1px solid rgba(28,23,16,0.3); object-fit: cover; filter: grayscale(1) contrast(1.25); align-self: center; } .ds-entry-handle { font-family: ui-monospace, monospace; font-size: 0.75rem; color: #1c1710; text-decoration: none; } .ds-entry-handle:hover { text-decoration: underline; } .ds-entry-time { font-family: ui-monospace, monospace; font-size: 0.75rem; color: #4f4636; } .ds-entry-content { margin-top: 8px; line-height: 1.5; color: #1c1710; white-space: pre-wrap; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Field Notebook",
+    "overview": "sosyal.log renders a real, working social feed as the record of what happened, not a feed styled to impress. It refuses the rounded-card, purple-gradient SaaS default: no cards, no shadows, no rounded corners anywhere in the shipped build. Structure comes from a warm paper ground, thin ink-colored rules between entries, and a strict split between two typefaces — a plain humanist sans for what was said (post content, bio) and monospace for the metadata of when and who and how much (timestamps, usernames-as-handles, counts, form labels, nav). One accent, a fountain-pen red-orange, is spent on exactly one thing: the liked state. Everything else — errors, disabled states, borders, hover — stays ink-only.\n\nThis is a code-led build: there was no image-generation step, so there is no comp or raster asset provenance to record here. Every value below is read directly from src/index.css and the component source, not from a mockup.",
+    "keyCharacteristics": [
+      "Flush-left, ruled log-entry layout; the hairline rule between entries is the boundary — there is no card",
+      "Two-typeface split by role (sans = content, mono = structural chrome), not by size ladder",
+      "Zero border-radius, zero box-shadow anywhere in the build",
+      "One accent color, reserved for the liked state only",
+      "Counts tick (scale-pulse) on change instead of snapping instantly"
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "The red-orange accent marks the liked state and nothing else. Errors, disabled controls, hover, and focus all stay ink-only so the accent's rarity keeps its meaning — an AI-generated screen must not reach for it as a general \"active\" or \"success\" color.", "section": "colors" },
+      { "name": "The One Size Per Role Rule", "body": "Rank is carried by weight, case, and monospace-vs-sans choice, not by a size ladder — confirmed in the build: body text is uniformly text-sm, all structural chrome is uniformly text-xs (with one 11px uppercase micro-label step for form fields), with no intermediate display/headline sizes anywhere in the app.", "section": "typography" },
+      { "name": "The Rule-Is-The-Boundary Rule", "body": "No entry, form, or panel is ever wrapped in a card, shadow, or filled surface distinct from the page. A border-b (or border-l/border-t for nested contexts, e.g. comment replies) closes it instead.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep post content and bios in the sans stack (font-sans/default body) and all structural chrome (timestamps, handles, counts, labels, nav) in font-mono-chrome.",
+      "Do close every entry/section with a hairline border-*-ink/NN rule rather than a card or shadow.",
+      "Do reserve the accent (#c1440e) for the liked state only; every other emphasis (errors, disabled, hover) stays ink-valued.",
+      "Do make every count that can change re-key and play the .tick scale-pulse on update rather than snapping.",
+      "Do keep buttons and inputs at 0px radius with 1px ink-opacity borders, filling to solid ink only on hover for primary actions."
+    ],
+    "donts": [
+      "Don't introduce a size ladder for hierarchy (display/headline/title steps). Rank is carried by weight, case, and mono-vs-sans choice — confirmed by the build's two-size-only type system.",
+      "Don't add box-shadow, card surfaces, or rounded corners to any new component; the build has zero instances of any of the three.",
+      "Don't use the accent color for links, focus states, primary-button fills, or generic \"success\" — it is spent entirely on the liked state.",
+      "Don't pull in a generic icon library (Lucide/Heroicons/emoji glyphs) for new controls; extend the ink-stamp SVG pattern in icons.tsx (ring + simple interior glyph, currentColor-stroked) instead.",
+      "Don't add a second font-loading path (a Google Fonts <link>, another @fontsource package) for body text — Public Sans is already self-hosted via src/main.tsx's @fontsource/public-sans imports; reuse that import, don't duplicate it."
+    ]
+  }
+}
