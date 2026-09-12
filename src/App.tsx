@@ -12,9 +12,9 @@ function App() {
   const { token } = useAuth();
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="min-h-screen bg-bg">
       {token && <Navbar />}
-      <main className="py-6">
+      <main>
         <Routes>
           <Route path="/login" element={token ? <Navigate to="/" replace /> : <LoginPage />} />
           <Route path="/register" element={token ? <Navigate to="/" replace /> : <RegisterPage />} />

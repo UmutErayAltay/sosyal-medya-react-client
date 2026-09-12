@@ -14,7 +14,7 @@ describe("LoginPage", () => {
     await user.click(screen.getByRole("button", { name: /giriş yap/i }));
 
     await waitFor(() => {
-      expect(screen.getByText("// E-posta veya şifre hatalı.")).toBeInTheDocument();
+      expect(screen.getByText("E-posta veya şifre hatalı.")).toBeInTheDocument();
     });
   });
 });

@@ -21,31 +21,29 @@ export function describeApiError(err: unknown): string {
 
 export function LoadingState({ label = "yükleniyor…" }: { label?: string }) {
   return (
-    <div className="flex items-center justify-center gap-2 py-10 font-mono-chrome text-xs text-ink-soft">
-      <span className="tick">…</span>
+    <div className="flex items-center justify-center gap-3 py-16 text-sm text-text-soft">
+      <span
+        aria-hidden="true"
+        className="h-4 w-4 animate-spin rounded-full border-2 border-border-strong border-t-accent"
+      />
       <span>{label}</span>
     </div>
   );
 }
 
-/** A margin-correction-note treatment, not a color alert: the accent is
- * reserved for the liked state, so errors stay ink-only (a thick left rule
- * + a "// " prefix reads as an annotation in the log, not a status color). */
 export function InlineError({ children }: { children: ReactNode }) {
-  return (
-    <p className="border-l-2 border-ink pl-2 font-mono-chrome text-xs text-ink">// {children}</p>
-  );
+  return <p className="text-sm text-danger">{children}</p>;
 }
 
 export function ErrorState({ error, onRetry }: { error: unknown; onRetry?: () => void }) {
   return (
-    <div className="mx-auto max-w-sm border-l-2 border-ink py-2 pl-4 text-left">
-      <p className="font-mono-chrome text-xs text-ink">// {describeApiError(error)}</p>
+    <div className="shadow-card mx-auto max-w-sm rounded-2xl border border-border bg-surface p-8 text-center">
+      <p className="text-sm text-danger">{describeApiError(error)}</p>
       {onRetry && (
         <button
           type="button"
           onClick={onRetry}
-          className="mt-3 border border-ink/40 px-3 py-1 font-mono-chrome text-xs text-ink hover:border-ink"
+          className="mt-4 inline-flex min-h-11 items-center justify-center rounded-full border border-border px-4 text-sm text-text-soft transition-colors hover:border-accent hover:text-accent"
         >
           tekrar dene
         </button>

@@ -23,7 +23,12 @@ export function ProfilePage() {
     onSuccess: (res) => {
       queryClient.setQueryData<ProfileResponse>(["profile", username], (old) =>
         old
-          ? { ...old, is_following: res.following, is_pending_request: res.is_pending, followers_count: res.followers_count }
+          ? {
+              ...old,
+              is_following: res.following,
+              is_pending_request: res.is_pending,
+              stats: { ...old.stats, followers: res.followers_count },
+            }
           : old,
       );
     },
@@ -36,8 +41,8 @@ export function ProfilePage() {
   const isSelf = data.is_self || me?.username === username;
 
   return (
-    <div className="mx-auto max-w-2xl border-l border-ink/10">
-      <div className="border-b border-ink/15 px-4 py-6">
+    <div className="mx-auto max-w-xl px-4 py-6">
+      <div className="shadow-card mb-4 rounded-3xl border border-border bg-surface p-6">
         <div className="flex items-center gap-4">
           <img
             src={
@@ -45,39 +50,39 @@ export function ProfilePage() {
               "https://api.dicebear.com/9.x/identicon/svg?seed=" + data.profile.username
             }
             alt=""
-            className="h-14 w-14 rounded-full border border-ink/30 object-cover grayscale contrast-125"
+            className="h-16 w-16 rounded-full object-cover ring-4 ring-bg"
           />
-          <div className="flex-1">
-            <h1 className="font-mono-chrome text-sm text-ink">@{data.profile.username}</h1>
-            {data.profile.bio && <p className="mt-1 text-sm text-ink-soft">{data.profile.bio}</p>}
+          <div className="min-w-0 flex-1">
+            <h1 className="font-display text-lg font-semibold text-text">@{data.profile.username}</h1>
+            {data.profile.bio && <p className="mt-0.5 text-sm text-text-soft">{data.profile.bio}</p>}
           </div>
           {!isSelf && (
             <button
               type="button"
               onClick={() => followMutation.mutate()}
               disabled={followMutation.isPending}
-              className="border border-ink px-4 py-1.5 text-sm font-medium text-ink hover:bg-ink hover:text-paper disabled:cursor-not-allowed disabled:border-ink/25 disabled:text-ink-soft disabled:hover:bg-transparent"
+              className="shadow-glow inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-linear-to-r from-accent-strong to-accent-2 px-4 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:from-surface-2 disabled:to-surface-2 disabled:text-text-soft disabled:shadow-none"
             >
               {data.is_pending_request ? "istek gönderildi" : data.is_following ? "takibi bırak" : "takip et"}
             </button>
           )}
         </div>
-        <div className="mt-4 flex gap-6 font-mono-chrome text-xs text-ink-soft">
+        <div className="mt-5 flex gap-6 text-sm text-text-soft">
           <span>
-            <strong className="text-ink">
-              <TickingCount value={data.posts.length} />
+            <strong className="font-semibold text-text">
+              <TickingCount value={data.stats.posts} />
             </strong>{" "}
             gönderi
           </span>
           <span>
-            <strong className="text-ink">
-              <TickingCount value={data.followers_count} />
+            <strong className="font-semibold text-text">
+              <TickingCount value={data.stats.followers} />
             </strong>{" "}
             takipçi
           </span>
           <span>
-            <strong className="text-ink">
-              <TickingCount value={data.following_count} />
+            <strong className="font-semibold text-text">
+              <TickingCount value={data.stats.following} />
             </strong>{" "}
             takip
           </span>
@@ -85,7 +90,9 @@ export function ProfilePage() {
       </div>
 
       {data.posts.length === 0 ? (
-        <p className="px-4 py-10 text-center font-mono-chrome text-xs text-ink-soft">henüz kayıt yok.</p>
+        <p className="rounded-2xl border border-dashed border-border py-16 text-center text-sm text-text-soft">
+          henüz kayıt yok.
+        </p>
       ) : (
         data.posts.map((post) => <PostCard key={post.id} post={post} />)
       )}

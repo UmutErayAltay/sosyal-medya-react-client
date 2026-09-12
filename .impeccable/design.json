@@ -1,25 +1,32 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-12T01:20:38Z",
-  "title": "Design System: sosyal.log",
+  "generatedAt": "2026-09-12T11:45:00Z",
+  "title": "Design System: sosyal.log — \"Afterhours\"",
   "extensions": {
     "colorMeta": {
-      "accent": { "role": "primary", "displayName": "Fountain-Pen Accent", "canonical": "#c1440e", "tonalRamp": ["#3a1405", "#5c200a", "#7e2c0e", "#a03812", "#c1440e", "#d97442", "#e8a583", "#f3d3c1"] },
-      "paper": { "role": "neutral", "displayName": "Warm Paper", "canonical": "#f7f3ea", "tonalRamp": ["#3a3527", "#5c563e", "#7d7656", "#a19a76", "#c4bc9a", "#dcd6bf", "#ede8dc", "#f7f3ea"] },
-      "paper-line": { "role": "neutral", "displayName": "Paper Rule", "canonical": "#cabfa4", "tonalRamp": ["#332e21", "#544c37", "#756a4c", "#968862", "#b6a67c", "#cabfa4", "#dcd4c1", "#eee9df"] },
-      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#1c1710", "tonalRamp": ["#0e0b08", "#1c1710", "#332a1e", "#4f4636", "#6d6250", "#8c826d", "#aca38d", "#cec6b3"] },
-      "ink-soft": { "role": "neutral", "displayName": "Ink Soft", "canonical": "#4f4636", "tonalRamp": ["#221d16", "#382f24", "#4f4636", "#685d49", "#82755d", "#9d8f74", "#b9ab8d", "#d6c9a9"] },
-      "accent-soft": { "role": "neutral", "displayName": "Accent Soft (declared, unexercised)", "canonical": "#e8ceb8", "tonalRamp": ["#4a2f18", "#6f4726", "#946037", "#b5804f", "#d1a578", "#e8ceb8", "#f1e0d2", "#f8efe7"] }
+      "bg": { "role": "neutral", "displayName": "Near-Black Ground", "canonical": "#0a0a10", "tonalRamp": ["#0a0a10", "#121218", "#1a1a22", "#26262f", "#3a3a46", "#55555f", "#7a7a83", "#a8a8ae"] },
+      "surface": { "role": "neutral", "displayName": "Layered Surface", "canonical": "#14141c", "tonalRamp": ["#0a0a10", "#14141c", "#1c1c26", "#2a2a35", "#3d3d49", "#57575f", "#7c7c82", "#a9a9ad"] },
+      "surface-2": { "role": "neutral", "displayName": "Raised / Disabled Surface", "canonical": "#1c1c26", "tonalRamp": ["#0e0e13", "#1c1c26", "#282832", "#38383f", "#4d4d53", "#69696e", "#8d8d90", "#b8b8ba"] },
+      "border": { "role": "neutral", "displayName": "Hairline Border", "canonical": "rgba(255,255,255,0.09)", "tonalRamp": ["rgba(255,255,255,0.03)", "rgba(255,255,255,0.06)", "rgba(255,255,255,0.09)", "rgba(255,255,255,0.13)", "rgba(255,255,255,0.18)", "rgba(255,255,255,0.28)", "rgba(255,255,255,0.45)", "rgba(255,255,255,0.7)"] },
+      "border-strong": { "role": "neutral", "displayName": "Strong Border / Avatar Ring", "canonical": "rgba(255,255,255,0.18)", "tonalRamp": ["rgba(255,255,255,0.06)", "rgba(255,255,255,0.1)", "rgba(255,255,255,0.14)", "rgba(255,255,255,0.18)", "rgba(255,255,255,0.28)", "rgba(255,255,255,0.4)", "rgba(255,255,255,0.6)", "rgba(255,255,255,0.85)"] },
+      "text": { "role": "neutral", "displayName": "Primary Ink", "canonical": "#f2f1f6", "tonalRamp": ["#3a3a40", "#57575e", "#797980", "#9c9ca2", "#c1c1c6", "#d9d9dd", "#ebebee", "#f2f1f6"] },
+      "text-soft": { "role": "neutral", "displayName": "Soft Ink (metadata/disabled)", "canonical": "#9d9ab0", "tonalRamp": ["#2c2a37", "#413e50", "#585469", "#726d82", "#8d879b", "#9d9ab0", "#b7b3c4", "#d3d0dc"] },
+      "accent": { "role": "secondary", "displayName": "Accent Light (text/links/icons on dark)", "canonical": "#9b82ff", "tonalRamp": ["#241a54", "#3a2a80", "#523cab", "#6d50d6", "#9b82ff", "#b5a2ff", "#cec2ff", "#e6dfff"] },
+      "accent-strong": { "role": "primary", "displayName": "Accent Deep — Gradient Start (indigo-violet)", "canonical": "#6845e8", "tonalRamp": ["#1a0f4d", "#2c1c7a", "#3f2aa6", "#5237d0", "#6845e8", "#8a6eee", "#ac9af3", "#cfc5f8"] },
+      "accent-2": { "role": "primary", "displayName": "Accent Deep — Gradient End (magenta)", "canonical": "#c92a72", "tonalRamp": ["#3d0a24", "#63113a", "#8a1850", "#b02063", "#c92a72", "#dd5793", "#ec8bb6", "#f6c1d8"] },
+      "danger": { "role": "neutral", "displayName": "Inline Error Red", "canonical": "#ff6b81", "tonalRamp": ["#4d0f18", "#7a1826", "#a72134", "#d43648", "#ff6b81", "#ff97a6", "#ffc0c9", "#ffe3e7"] }
     },
     "typographyMeta": {
-      "body": { "displayName": "Body (Sans)", "purpose": "Post content, bio, comment text — anything a person wrote." },
-      "chrome": { "displayName": "Chrome (Mono)", "purpose": "Structural metadata: timestamps, handles, counts, nav, error text." },
-      "chrome-label": { "displayName": "Chrome Label (Mono, uppercase)", "purpose": "Form field labels and micro-headers, e.g. 'yeni kayıt', 'e-posta'." }
+      "display": { "displayName": "Display (Space Grotesk)", "purpose": "Wordmark and every page <h1> (LoginPage, RegisterPage, ProfilePage) — self-hosted via @fontsource/space-grotesk imports in src/main.tsx, weights 500/600/700." },
+      "body": { "displayName": "Body (Inter)", "purpose": "Post content, bio, comments, form labels, buttons — self-hosted via @fontsource/inter imports in src/main.tsx, weights 400/500/600." },
+      "chrome": { "displayName": "Chrome (Inter, small/mono-set counts)", "purpose": "Timestamps and metadata (text-xs, font-mono applied to numeric counts via TickingCount's tabular-nums, not a separate typeface)." }
     },
-    "shadows": [],
+    "shadows": [
+      { "name": "shadow-card", "value": "0 1px 2px rgba(0,0,0,0.5), 0 16px 32px -20px rgba(0,0,0,0.65)", "purpose": "Default elevation for every card: posts, composer, comment threads, auth forms. Neutral black, not accent-tinted, so ordinary content doesn't compete with primary actions." },
+      { "name": "shadow-glow", "value": "0 1px 2px rgba(0,0,0,0.4), 0 12px 28px -12px rgba(104,69,232,0.55)", "purpose": "Elevation for gradient-filled primary controls (submit/follow/paylaş/gönder, liked state) — tinted from accent-strong so the primary action visibly 'lifts' toward the brand color. Removed entirely on disabled (disabled:shadow-none)." }
+    ],
     "motion": [
-      { "name": "tick", "value": "260ms ease-out, transform: scale(1.35) -> scale(1)", "purpose": "Plays whenever a non-like count changes (comments, followers, following, post count)." },
-      { "name": "tick-accent", "value": "260ms ease-out, transform: scale(1.35) -> scale(1), color flashes to accent then settles", "purpose": "Plays only on the like count when it changes; the only counter allowed to touch the accent color." }
+      { "name": "tick", "value": "240ms cubic-bezier(0.16, 1, 0.3, 1), transform: scale(1.3) -> scale(1)", "purpose": "Plays once whenever any count re-keys on change (likes, comments, follower/following/post stats) via TickingCount.tsx. Applied uniformly — no separate color-flash variant; the accent's reservation is carried by the like button's fill state, not by the number." }
     ],
     "breakpoints": []
   },
@@ -28,71 +35,88 @@
       "name": "Primary Button (default)",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Rest state of the app's one button style: submit, follow, retry.",
+      "description": "Gradient-filled pill for submit/follow/paylaş/gönder — the app's one primary-action style.",
       "html": "<button class=\"ds-btn-primary\">paylaş</button>",
-      "css": ".ds-btn-primary { background: transparent; color: #1c1710; border: 1px solid #1c1710; padding: 8px 16px; font-size: 0.875rem; font-weight: 500; transition: background 0.15s, color 0.15s; } .ds-btn-primary:hover { background: #1c1710; color: #f7f3ea; } .ds-btn-primary:focus-visible { outline: 1px solid #1c1710; outline-offset: 2px; } .ds-btn-primary:disabled { cursor: not-allowed; border-color: rgba(28,23,16,0.25); color: #4f4636; background: transparent; }"
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border: none; border-radius: 9999px; background: linear-gradient(to right, #6845e8, #c92a72); color: #ffffff; font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; box-shadow: 0 1px 2px rgba(0,0,0,0.4), 0 12px 28px -12px rgba(104,69,232,0.55); transition: opacity 0.15s; } .ds-btn-primary:hover { opacity: 0.9; } .ds-btn-primary:focus-visible { outline: 2px solid #9b82ff; outline-offset: 2px; } .ds-btn-primary:disabled { cursor: not-allowed; background: #1c1c26; color: #9d9ab0; box-shadow: none; }"
     },
     {
-      "name": "Like Button (active/liked)",
+      "name": "Like Button (ghost / liked)",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "The one control in the system that carries the accent color, only when liked=true.",
-      "html": "<button class=\"ds-btn-like ds-btn-like--liked\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 15 15\" fill=\"none\" aria-hidden=\"true\"><circle cx=\"7.5\" cy=\"7.5\" r=\"6.6\" stroke=\"currentColor\" stroke-width=\"1.1\"/><path d=\"M7.5 10.3 4.9 7.8a1.7 1.7 0 0 1 2.4-2.4l.2.2.2-.2a1.7 1.7 0 0 1 2.4 2.4z\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"1\" stroke-linejoin=\"round\"/></svg><span class=\"ds-tick-accent\">12</span></button>",
-      "css": ".ds-btn-like { display: flex; align-items: center; gap: 6px; border: 1px solid rgba(28,23,16,0.2); padding: 4px 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.75rem; background: transparent; color: #1c1710; } .ds-btn-like:hover { border-color: #1c1710; } .ds-btn-like--liked { border-color: #c1440e; color: #c1440e; } .ds-tick-accent { display: inline-block; }"
+      "description": "The one ghost control in the system that fills solid with the gradient — the single place where 'liked' and 'the brand accent' are the same visual event. Unliked state stays neutral border/text, hover swaps to accent.",
+      "html": "<button class=\"ds-btn-like ds-btn-like--liked\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><path d=\"M8 13.4 3.4 8.9a3 3 0 0 1 4.24-4.24L8 5l.36-.34A3 3 0 0 1 12.6 8.9z\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/></svg><span class=\"ds-tick\">12</span></button>",
+      "css": ".ds-btn-like { display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.09); background: transparent; color: #9d9ab0; font-size: 0.875rem; transition: border-color 0.15s, color 0.15s; } .ds-btn-like:hover { border-color: #9b82ff; color: #9b82ff; } .ds-btn-like--liked { border: none; background: linear-gradient(to right, #6845e8, #c92a72); color: #ffffff; box-shadow: 0 1px 2px rgba(0,0,0,0.4), 0 12px 28px -12px rgba(104,69,232,0.55); } .ds-tick { display: inline-block; font-variant-numeric: tabular-nums; animation: ds-tick 240ms cubic-bezier(0.16,1,0.3,1); } @keyframes ds-tick { 0% { transform: scale(1.3); } 100% { transform: scale(1); } }"
     },
     {
-      "name": "Underline Input",
+      "name": "Boxed Input",
       "kind": "input",
       "refersTo": "input-underline",
-      "description": "Auth-form and comment field: bottom-border-only, no box, transparent.",
-      "html": "<input class=\"ds-input-underline\" type=\"email\" placeholder=\"\" />",
-      "css": ".ds-input-underline { border: none; border-bottom: 1px solid rgba(28,23,16,0.25); background: transparent; padding: 6px 0; color: #1c1710; font-size: 0.875rem; } .ds-input-underline::placeholder { color: #4f4636; } .ds-input-underline:focus { border-bottom-color: #1c1710; outline: none; }"
+      "description": "Auth-form field: boxed, rounded-xl, translucent ground fill, accent border on focus. min-h-11 touch target.",
+      "html": "<input class=\"ds-input\" type=\"email\" />",
+      "css": ".ds-input { min-height: 44px; width: 100%; border-radius: 0.75rem; border: 1px solid rgba(255,255,255,0.09); background: rgba(10,10,16,0.5); padding: 0 16px; color: #f2f1f6; font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; } .ds-input::placeholder { color: #9d9ab0; } .ds-input:focus { border-color: #9b82ff; outline: none; } .ds-input:focus-visible { outline: 2px solid #9b82ff; outline-offset: 2px; }"
+    },
+    {
+      "name": "Pill Comment Field",
+      "kind": "input",
+      "refersTo": "custom",
+      "description": "Comment composer field: fully rounded (pill) instead of the boxed auth style, matching the lighter inline feel of a reply row.",
+      "html": "<input class=\"ds-input-pill\" placeholder=\"yorum yaz…\" />",
+      "css": ".ds-input-pill { min-height: 44px; flex: 1; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.09); background: rgba(10,10,16,0.5); padding: 0 16px; color: #f2f1f6; font-size: 0.875rem; } .ds-input-pill::placeholder { color: #9d9ab0; } .ds-input-pill:focus { border-color: #9b82ff; outline: none; }"
     },
     {
       "name": "Navbar",
       "kind": "nav",
       "refersTo": "nav",
-      "description": "Single hairline-bottomed bar; sans wordmark, mono chrome links.",
-      "html": "<header class=\"ds-navbar\"><a class=\"ds-navbar-mark\" href=\"/\">sosyal.log</a><nav class=\"ds-navbar-links\"><a href=\"/profile/me\">@me</a><button class=\"ds-navbar-logout\">çıkış</button></nav></header>",
-      "css": ".ds-navbar { border-bottom: 1px solid rgba(28,23,16,0.15); background: #f7f3ea; display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; } .ds-navbar-mark { font-family: \"Public Sans\", system-ui, sans-serif; font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; color: #1c1710; text-decoration: none; } .ds-navbar-links { display: flex; align-items: center; gap: 16px; font-family: ui-monospace, monospace; font-size: 0.75rem; color: #4f4636; } .ds-navbar-links a:hover { color: #1c1710; } .ds-navbar-logout { border: 1px solid rgba(28,23,16,0.25); background: transparent; padding: 4px 8px; color: inherit; } .ds-navbar-logout:hover { border-color: #1c1710; color: #1c1710; }"
+      "description": "Sticky, translucent-blurred bar; Space Grotesk wordmark with a single accent-colored glyph (the '.'), Inter nav links.",
+      "html": "<header class=\"ds-navbar\"><a class=\"ds-navbar-mark\" href=\"/\">sosyal<span class=\"ds-navbar-dot\">.</span>log</a><nav class=\"ds-navbar-links\"><a href=\"/profile/me\">@me</a><button class=\"ds-navbar-logout\">çıkış</button></nav></header>",
+      "css": ".ds-navbar { position: sticky; top: 0; border-bottom: 1px solid rgba(255,255,255,0.09); background: rgba(10,10,16,0.75); backdrop-filter: blur(24px); display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; } .ds-navbar-mark { font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; color: #f2f1f6; text-decoration: none; } .ds-navbar-dot { color: #9b82ff; } .ds-navbar-links { display: flex; align-items: center; gap: 12px; font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; color: #9d9ab0; } .ds-navbar-links a:hover { color: #f2f1f6; } .ds-navbar-logout { min-height: 44px; display: inline-flex; align-items: center; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.09); background: transparent; padding: 0 12px; color: inherit; } .ds-navbar-logout:hover { border-color: #9b82ff; color: #9b82ff; }"
     },
     {
-      "name": "Log Entry (Post Card)",
+      "name": "Post Card",
       "kind": "card",
+      "refersTo": "card",
+      "description": "Signature content unit: layered surface, offset-and-blurred shadow, avatar with a subtle ring, pill-shaped like/comment controls sitting directly on the card (no nested sub-cards).",
+      "html": "<article class=\"ds-post-card\"><div class=\"ds-post-head\"><img class=\"ds-post-avatar\" alt=\"\" /><div><a class=\"ds-post-handle\" href=\"#\">@umut</a><span class=\"ds-post-time\">3dk</span></div></div><p class=\"ds-post-content\">Bugün ilk gönderiyi attım.</p></article>",
+      "css": ".ds-post-card { border-radius: 1rem; border: 1px solid rgba(255,255,255,0.09); background: #14141c; padding: 20px; box-shadow: 0 1px 2px rgba(0,0,0,0.5), 0 16px 32px -20px rgba(0,0,0,0.65); transition: border-color 0.15s; } .ds-post-card:hover { border-color: rgba(255,255,255,0.18); } .ds-post-avatar { height: 40px; width: 40px; border-radius: 9999px; object-fit: cover; box-shadow: 0 0 0 2px rgba(255,255,255,0.18); } .ds-post-handle { font-size: 0.875rem; font-weight: 500; color: #f2f1f6; text-decoration: none; } .ds-post-handle:hover { color: #9b82ff; } .ds-post-time { display: block; font-size: 0.75rem; color: #9d9ab0; } .ds-post-content { margin-top: 12px; font-size: 15px; line-height: 1.6; color: #f2f1f6; white-space: pre-wrap; }"
+    },
+    {
+      "name": "Ink-Stamp Icon System",
+      "kind": "custom",
       "refersTo": "custom",
-      "description": "Signature component: flush-left dated entry, hairline-closed, no card boundary.",
-      "html": "<article class=\"ds-entry\"><div class=\"ds-entry-head\"><img class=\"ds-entry-avatar\" alt=\"\" /><a class=\"ds-entry-handle\" href=\"#\">@umut</a><span class=\"ds-entry-time\">· 3dk</span></div><p class=\"ds-entry-content\">Bugün ilk gönderiyi attım.</p></article>",
-      "css": ".ds-entry { border-bottom: 1px solid rgba(28,23,16,0.15); padding: 16px; } .ds-entry-head { display: flex; align-items: baseline; gap: 8px; } .ds-entry-avatar { height: 28px; width: 28px; border-radius: 9999px; border: 1px solid rgba(28,23,16,0.3); object-fit: cover; filter: grayscale(1) contrast(1.25); align-self: center; } .ds-entry-handle { font-family: ui-monospace, monospace; font-size: 0.75rem; color: #1c1710; text-decoration: none; } .ds-entry-handle:hover { text-decoration: underline; } .ds-entry-time { font-family: ui-monospace, monospace; font-size: 0.75rem; color: #4f4636; } .ds-entry-content { margin-top: 8px; line-height: 1.5; color: #1c1710; white-space: pre-wrap; }"
+      "description": "Authored stroke-SVG ring-and-glyph marks (LikeStamp heart, CommentStamp speech bubble) from src/components/icons.tsx — currentColor-stroked, aria-hidden. Not a generic icon library, not emoji.",
+      "html": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><path d=\"M8 13.4 3.4 8.9a3 3 0 0 1 4.24-4.24L8 5l.36-.34A3 3 0 0 1 12.6 8.9z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/></svg>",
+      "css": "/* inherits currentColor from parent button; no standalone class needed */"
     }
   ],
   "narrative": {
-    "northStar": "The Field Notebook",
-    "overview": "sosyal.log renders a real, working social feed as the record of what happened, not a feed styled to impress. It refuses the rounded-card, purple-gradient SaaS default: no cards, no shadows, no rounded corners anywhere in the shipped build. Structure comes from a warm paper ground, thin ink-colored rules between entries, and a strict split between two typefaces — a plain humanist sans for what was said (post content, bio) and monospace for the metadata of when and who and how much (timestamps, usernames-as-handles, counts, form labels, nav). One accent, a fountain-pen red-orange, is spent on exactly one thing: the liked state. Everything else — errors, disabled states, borders, hover — stays ink-only.\n\nThis is a code-led build: there was no image-generation step, so there is no comp or raster asset provenance to record here. Every value below is read directly from src/index.css and the component source, not from a mockup.",
+    "northStar": "Afterhours",
+    "overview": "sosyal.log is a social feed for after the sun goes down — the app checked from bed, not from a desk under office light. This replaces an earlier \"field notebook\" direction (warm cream paper, ink-black text, monospace metadata) that read as flat and washed-out once actually lived in, and it deliberately goes further than the sibling Flask web client for the same backend, whose own design is a conventional light-first coral/teal card layout behind a manual dark-mode toggle: this client commits to dark as the default scene, not an opt-in.\n\nStructure comes from layered near-black surfaces (never pure black, never a single flat gray), a self-hosted Space Grotesk display face for the wordmark and page headings against a self-hosted Inter body face, and one reserved accent — an indigo-violet-to-magenta gradient — spent only on primary actions, the liked state, and follow/submit buttons. Everything else stays neutral. Cards carry real depth: soft, color-tinted, offset-and-blurred shadows, not a flat outline or a bevel standing in for elevation.",
     "keyCharacteristics": [
-      "Flush-left, ruled log-entry layout; the hairline rule between entries is the boundary — there is no card",
-      "Two-typeface split by role (sans = content, mono = structural chrome), not by size ladder",
-      "Zero border-radius, zero box-shadow anywhere in the build",
-      "One accent color, reserved for the liked state only",
-      "Counts tick (scale-pulse) on change instead of snapping instantly"
+      "Layered dark surfaces (#0a0a10 ground → #14141c cards → #1c1c26 raised/disabled state), not a single flat charcoal",
+      "One reserved gradient accent (#6845e8 → #c92a72), spent only on primary actions, the liked state, and follow/submit — never on links or body text",
+      "Self-hosted Space Grotesk (display) + Inter (body), both via @fontsource imports in src/main.tsx — no system-font fallback used as a display voice",
+      "Real shadow depth (.shadow-card, .shadow-glow in src/index.css): offset, blurred, and — for the glow variant — tinted from the accent",
+      "Authored ring-and-glyph SVG marks for like/comment (src/components/icons.tsx), not emoji and not a generic icon library",
+      "Every count that changes scale-pulses once (.tick), applied uniformly"
     ],
     "rules": [
-      { "name": "The One Accent Rule", "body": "The red-orange accent marks the liked state and nothing else. Errors, disabled controls, hover, and focus all stay ink-only so the accent's rarity keeps its meaning — an AI-generated screen must not reach for it as a general \"active\" or \"success\" color.", "section": "colors" },
-      { "name": "The One Size Per Role Rule", "body": "Rank is carried by weight, case, and monospace-vs-sans choice, not by a size ladder — confirmed in the build: body text is uniformly text-sm, all structural chrome is uniformly text-xs (with one 11px uppercase micro-label step for form fields), with no intermediate display/headline sizes anywhere in the app.", "section": "typography" },
-      { "name": "The Rule-Is-The-Boundary Rule", "body": "No entry, form, or panel is ever wrapped in a card, shadow, or filled surface distinct from the page. A border-b (or border-l/border-t for nested contexts, e.g. comment replies) closes it instead.", "section": "elevation" }
+      { "name": "The One Accent Rule", "body": "The gradient marks a primary action or the liked state and nothing else — never a link color, a focus ring, or a generic \"success\" signal. Comment controls and hover states stay neutral so the accent's rarity keeps its meaning.", "section": "colors" },
+      { "name": "The Two-Shade Accent Rule", "body": "The same hue never serves both \"text on dark\" and \"white text on fill\" — one shade is measurably too light for the former or too dark for the latter. accent (light) is for text/icons on the ground; accent-strong/accent-2 (deep) are for gradient fills only.", "section": "colors" },
+      { "name": "The No Gradient Text Rule", "body": "Emphasis comes from weight, size, or the wordmark's single accent-colored glyph (the \".\" in \"sosyal.log\") — never a bg-clip-text gradient fill on a text run. Verified absent from every bg-linear-to-r use in the build; all of them sit behind solid white or currentColor text, not behind transparent text.", "section": "typography" }
     ],
     "dos": [
-      "Do keep post content and bios in the sans stack (font-sans/default body) and all structural chrome (timestamps, handles, counts, labels, nav) in font-mono-chrome.",
-      "Do close every entry/section with a hairline border-*-ink/NN rule rather than a card or shadow.",
-      "Do reserve the accent (#c1440e) for the liked state only; every other emphasis (errors, disabled, hover) stays ink-valued.",
-      "Do make every count that can change re-key and play the .tick scale-pulse on update rather than snapping.",
-      "Do keep buttons and inputs at 0px radius with 1px ink-opacity borders, filling to solid ink only on hover for primary actions."
+      "Do reserve the gradient for primary actions, the liked state, and follow/submit — everywhere else stays neutral ink/soft-text.",
+      "Do use accent (light) for text/links/icons on dark surfaces and accent-strong/accent-2 (deep) only for gradient fills behind white text — never swap the two roles.",
+      "Do keep every button, pill, and text input at min-h-11 (44px).",
+      "Do swap a disabled gradient button to a flat surface-2 fill with text-soft label — never dim the gradient with opacity.",
+      "Do give every card real offset-and-blurred shadow depth (shadow-card/shadow-glow), never a flat outline standing in for it."
     ],
     "donts": [
-      "Don't introduce a size ladder for hierarchy (display/headline/title steps). Rank is carried by weight, case, and mono-vs-sans choice — confirmed by the build's two-size-only type system.",
-      "Don't add box-shadow, card surfaces, or rounded corners to any new component; the build has zero instances of any of the three.",
-      "Don't use the accent color for links, focus states, primary-button fills, or generic \"success\" — it is spent entirely on the liked state.",
-      "Don't pull in a generic icon library (Lucide/Heroicons/emoji glyphs) for new controls; extend the ink-stamp SVG pattern in icons.tsx (ring + simple interior glyph, currentColor-stroked) instead.",
-      "Don't add a second font-loading path (a Google Fonts <link>, another @fontsource package) for body text — Public Sans is already self-hosted via src/main.tsx's @fontsource/public-sans imports; reuse that import, don't duplicate it."
+      "Don't put gradient text (bg-clip-text) anywhere — emphasis comes from weight, size, or a single solid-colored glyph.",
+      "Don't add a second display face; Space Grotesk is already self-hosted via src/main.tsx's @fontsource/space-grotesk imports.",
+      "Don't pull in a generic icon library or an emoji glyph for a new control; extend the ring-and-glyph pattern in icons.tsx.",
+      "Don't nest a card inside a card; post actions are pills on the card surface, not sub-cards.",
+      "Don't reach for a hard-edged block shadow — this world's depth is always soft and blurred, tinted from the accent only on primary actions."
     ]
   }
 }

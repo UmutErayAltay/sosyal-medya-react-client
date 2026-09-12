@@ -18,7 +18,7 @@ export function PostDetailPage() {
   if (!data) return null;
 
   return (
-    <div className="mx-auto max-w-2xl border-l border-ink/10">
+    <div className="mx-auto max-w-xl px-4 py-6">
       <PostCard post={data.post} />
       <CommentSection postId={data.post.id} comments={data.comments} />
     </div>

@@ -1,34 +1,37 @@
 ---
 name: sosyal.log
-description: A working social feed rendered as a flush-left field notebook — ruled paper, monospace metadata, ink-only rules, one accent reserved for the liked state.
+description: A dark-first social feed — near-black layered surfaces, one indigo-to-magenta gradient accent reserved for primary/liked/active states, self-hosted Space Grotesk display type over Inter body copy.
 colors:
-  paper: "#f7f3ea"
-  paper-line: "#cabfa4"
-  ink: "#1c1710"
-  ink-soft: "#4f4636"
-  accent: "#c1440e"
-  accent-soft: "#e8ceb8"
+  bg: "#0a0a10"
+  surface: "#14141c"
+  surface-2: "#1c1c26"
+  border: "rgba(255,255,255,0.09)"
+  border-strong: "rgba(255,255,255,0.18)"
+  text: "#f2f1f6"
+  text-soft: "#9d9ab0"
+  accent: "#9b82ff"
+  accent-strong: "#6845e8"
+  accent-2: "#c92a72"
+  danger: "#ff6b81"
 typography:
+  display:
+    fontFamily: "Space Grotesk, ui-sans-serif, system-ui, sans-serif"
+    fontWeight: 600
+    letterSpacing: "-0.01em"
   body:
-    fontFamily: "Public Sans, system-ui, -apple-system, Segoe UI, sans-serif"
-    fontSize: "0.875rem"
+    fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: "0.9375rem"
     fontWeight: 400
-    lineHeight: 1.5
-    letterSpacing: "normal"
+    lineHeight: 1.6
   chrome:
-    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+    fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.75rem"
-    fontWeight: 400
-    lineHeight: 1.4
-    letterSpacing: "normal"
-  chrome-label:
-    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
-    fontSize: "0.6875rem"
-    fontWeight: 400
-    lineHeight: 1.3
+    fontWeight: 500
     letterSpacing: "0.05em"
 rounded:
-  none: "0px"
+  card: "1rem"
+  card-lg: "1.5rem"
+  pill: "9999px"
 spacing:
   xs: "4px"
   sm: "8px"
@@ -36,123 +39,206 @@ spacing:
   lg: "24px"
 components:
   button-primary:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.none}"
-    padding: "8px 16px"
-  button-primary-hover:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper}"
+    background: "linear-gradient(to right, {colors.accent-strong}, {colors.accent-2})"
+    textColor: "#ffffff"
+    rounded: "{rounded.pill}"
+    minHeight: "44px"
   button-primary-disabled:
-    textColor: "{colors.ink-soft}"
-  input-underline:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.none}"
-    padding: "6px 0"
+    background: "{colors.surface-2}"
+    textColor: "{colors.text-soft}"
+  card:
+    background: "{colors.surface}"
+    border: "1px solid {colors.border}"
+    rounded: "{rounded.card}"
 ---
 
-# Design System: sosyal.log
+# Design System: sosyal.log — "Afterhours"
 
 ## Overview
 
-**Creative North Star: "The Field Notebook"**
+**Creative North Star: "Afterhours"**
 
-sosyal.log renders a real, working social feed as the record of what happened, not a feed styled to impress. It refuses the rounded-card, purple-gradient SaaS default: no cards, no shadows, no rounded corners anywhere in the shipped build. Structure comes from a warm paper ground, thin ink-colored rules between entries, and a strict split between two typefaces — a plain humanist sans for what was said (post content, bio) and monospace for the metadata of when and who and how much (timestamps, usernames-as-handles, counts, form labels, nav). One accent, a fountain-pen red-orange, is spent on exactly one thing: the liked state. Everything else — errors, disabled states, borders, hover — stays ink-only.
+sosyal.log is a social feed for after the sun goes down — the app checked
+from bed, not from a desk under office light. This replaces an earlier
+"field notebook" direction (warm cream paper, ink-black text, monospace
+metadata) that read as flat and washed-out once actually lived in, and it
+deliberately goes further than the sibling Flask web client for the same
+backend, whose own design is a conventional light-first coral/teal card
+layout behind a manual dark-mode toggle: this client commits to dark as the
+default scene, not an opt-in.
 
-This is a code-led build: there was no image-generation step, so there is no comp or raster asset provenance to record here. Every value below is read directly from `src/index.css` and the component source, not from a mockup.
+Structure comes from layered near-black surfaces (never pure black, never a
+single flat gray), a self-hosted Space Grotesk display face for the wordmark
+and page headings against a self-hosted Inter body face, and one reserved
+accent — an indigo-violet-to-magenta gradient — spent only on primary
+actions, the liked state, and follow/submit buttons. Everything else stays
+neutral. Cards carry real depth: soft, color-tinted, offset-and-blurred
+shadows, not a flat outline or a bevel standing in for elevation.
 
-**Key Characteristics:**
-- Flush-left, ruled log-entry layout; the hairline rule between entries is the boundary — there is no card
-- Two-typeface split by role (sans = content, mono = structural chrome), not by size ladder
-- Zero border-radius, zero box-shadow anywhere in the build
-- One accent color, reserved for the liked state only
-- Counts tick (scale-pulse) on change instead of snapping instantly
+**Key characteristics:**
+- Layered dark surfaces (`#0a0a10` ground → `#14141c` cards → `#1c1c26`
+  raised/disabled state), not a single flat charcoal
+- One reserved gradient accent (`#6845e8 → #c92a72`), spent only on primary
+  actions, the liked state, and follow/submit — never on links or body text
+- Self-hosted Space Grotesk (display) + Inter (body), both via `@fontsource`
+  imports in `src/main.tsx` — no system-font fallback used as a display voice
+- Real shadow depth (`.shadow-card`, `.shadow-glow` in `src/index.css`):
+  offset, blurred, and — for the glow variant — tinted from the accent
+- Authored ring-and-glyph SVG marks for like/comment (`src/components/icons.tsx`),
+  not emoji and not a generic icon library
+- Every count that changes scale-pulses once (`.tick`), applied uniformly
 
 ## Colors
 
-A warm, low-saturation paper-and-ink palette with a single spent accent.
+### Surfaces
+- **Ground** (`#0a0a10`, `--color-bg`): page background.
+- **Surface** (`#14141c`, `--color-surface`): cards (posts, composer, comments,
+  auth forms).
+- **Surface Raised** (`#1c1c26`, `--color-surface-2`): the disabled state of a
+  gradient-filled button — a deliberate flat swap, not a dimmed gradient (see
+  Buttons below for why).
 
-### Primary
-- **Fountain-Pen Accent** (`#c1440e`, `--color-accent`): reserved exclusively for the liked state — the like button's border/text when active, and the like count's tick-flash animation (`.tick-accent`). Not used for links, focus rings, primary buttons, or any other "something happened" signal.
+### Accent
+- **Accent** (`#9b82ff`, `--color-accent`): text/link/icon color on dark
+  surfaces — links ("kayıt ol"), hover borders, focus rings. Chosen lighter
+  than the button-fill accent specifically so it clears 4.5:1 as small text
+  against the near-black ground (measured ~5.9:1).
+- **Accent Strong → Accent 2** (`#6845e8 → #c92a72`, `--color-accent-strong` /
+  `--color-accent-2`): the gradient fill for primary buttons, the liked
+  state, and follow/submit — both stops individually verified ≥4.5:1 against
+  white label text (~5.8:1 and ~5.2:1 respectively), because a single mid-tone
+  violet strong enough for a light-on-fill button reads too dark for
+  small text on the ground, and vice versa. Two roles, two shades.
 
-### Neutral
-- **Warm Paper** (`#f7f3ea`, `--color-paper`): page background; also the hover-state text color on filled ink buttons.
-- **Paper Rule** (`#cabfa4`, `--color-paper-line`): the repeating horizontal rule lines behind the composer's textarea (`.ruled`), evoking ruled notebook paper.
-- **Ink** (`#1c1710`, `--color-ink`): primary text, borders, filled-button backgrounds.
-- **Ink Soft** (`#4f4636`, `--color-ink-soft`): secondary/metadata text — timestamps, disabled states, placeholder copy.
-- **Accent Soft** (`#e8ceb8`, `--color-accent-soft`): defined as a token in `src/index.css` but not observed in any shipped component; carried here as an incumbent token, not exercised yet.
+### Text
+- **Text** (`#f2f1f6`, `--color-text`): primary content.
+- **Text Soft** (`#9d9ab0`, `--color-text-soft`): metadata, placeholders, and
+  disabled-button labels — verified ~6.2:1 against both `surface` and
+  `surface-2`.
+- **Danger** (`#ff6b81`, `--color-danger`): inline error text only.
 
 ### Named Rules
-**The One Accent Rule.** The red-orange accent marks the liked state and nothing else. Errors, disabled controls, hover, and focus all stay ink-only so the accent's rarity keeps its meaning — an AI-generated screen must not reach for it as a general "active" or "success" color.
+**The One Accent Rule.** The gradient marks a primary action or the liked
+state and nothing else — never a link color, a focus ring, or a generic
+"success" signal. Comment controls and hover states stay neutral so the
+accent's rarity keeps its meaning.
+
+**The Two-Shade Accent Rule.** The same hue never serves both "text on dark"
+and "white text on fill" — one shade is measurably too light for the former
+or too dark for the latter. `accent` (light) is for text/icons on the
+ground; `accent-strong`/`accent-2` (deep) are for gradient fills only.
 
 ## Typography
 
-**Body Font:** Public Sans (with system-ui, -apple-system, "Segoe UI", sans-serif fallback)
-**Label/Mono Font:** ui-monospace (with SFMono-Regular, Menlo, Consolas, monospace fallback)
+**Display:** Space Grotesk, 600–700 weight — the wordmark and every page
+`<h1>` (`LoginPage`, `RegisterPage`, `ProfilePage`). Self-hosted via
+`@fontsource/space-grotesk` imports in `src/main.tsx`.
 
-**Character:** A plain humanist sans carries anything a person wrote (post content, bio, comment text); monospace carries anything the system generated about the post (handle, timestamp, counts, form labels, nav actions). The pairing itself signals "log," not size or weight variation.
+**Body:** Inter, 400–600 weight — everything else (post content, bio,
+comments, labels, buttons). Self-hosted via `@fontsource/inter`.
 
-Public Sans is self-hosted via `@fontsource/public-sans` (400, 400-italic, 500, 600), imported in `src/main.tsx` — not an `index.html` `<link>`/`@font-face`, which is why a search limited to `index.html`/`src/index.css` alone won't find it. Confirmed actually rendering (not a silent fallback) via `document.fonts` in the running app: multiple Public Sans faces report `status: "loaded"`.
-
-### Hierarchy
-- **Body** (400, 14px `text-sm`, 1.5 line-height): post content, bio, comment text. Uses the sans stack.
-- **Label/Chrome** (400, 12px `text-xs`, 1.4 line-height): timestamps, usernames-as-metadata, nav links, counts, error text. Uses the mono stack via the `font-mono-chrome` utility.
-- **Chrome Label — small caps** (400, 11px, 0.05em letter-spacing, uppercase): form field labels and section eyebrised-free micro-headers ("yeni kayıt", "e-posta", "giriş") — mono, uppercase, wide-tracked.
-- The wordmark ("sosyal.log" in `Navbar`) is the one deliberate exception: sans, semibold, `text-lg`, tight tracking — a brand mark, not a hierarchy level.
+Rank is carried by face (display vs. body), weight, and size together, not a
+long size ladder: body copy sits at `text-[15px]`, chrome/metadata at
+`text-xs`/`text-sm`, page headings at `text-2xl` display weight — three
+steps, not a dozen.
 
 ### Named Rules
-**The One Size Per Role Rule.** Rank is carried by weight, case, and monospace-vs-sans choice, not by a size ladder — confirmed in the build: body text is uniformly `text-sm`, all structural chrome is uniformly `text-xs` (with one `11px` uppercase micro-label step for form fields), with no intermediate display/headline sizes anywhere in the app.
-
-## Layout
-
-Single-column, flush-left log column capped at `max-w-2xl` (`FeedPage`, `ProfilePage`), `max-w-sm` for auth forms (`LoginPage`), centered via `mx-auto`. `ProfilePage`/`FeedPage` add a `border-l border-ink/10` hairline down the left edge of the column — the only vertical rule in the layout, reinforcing the ruled-notebook-margin feel. Entries stack directly against each other; there is no gutter or gap component between them — the closing `border-b` of one entry is the opening edge of the next. Standard internal padding is `px-4` horizontally with `py-3`–`py-6` vertical depending on density (composer/post: `py-3`–`py-4`; profile header: `py-6`; empty/loading states: `py-10`).
+**No Gradient Text.** Emphasis comes from weight, size, or the wordmark's
+single accent-colored glyph (the "." in "sosyal.log") — never a
+`bg-clip-text` gradient fill on a text run. Verified absent from every
+`bg-linear-to-r` use in the build; all of them sit behind solid white or
+`currentColor` text, not behind transparent text.
 
 ## Elevation & Depth
 
-Flat, unconditionally. No `box-shadow` appears anywhere in `src/`. Depth and grouping are conveyed entirely by hairline rules (`border-ink/10`, `border-ink/15`, `border-ink/20`, `border-ink/25`, `border-ink/30` at increasing opacity for increasing emphasis) and by the ruled-paper background behind the composer. There is no tonal-surface layering either — every surface is the same paper color; only the border opacity changes.
-
-### Named Rules
-**The Rule-Is-The-Boundary Rule.** No entry, form, or panel is ever wrapped in a card, shadow, or filled surface distinct from the page. A `border-b` (or `border-l`/`border-t` for nested contexts, e.g. comment replies) closes it instead.
+Every card (`shadow-card`) and every gradient-filled primary control
+(`shadow-glow`) carries a real shadow: layered, offset, and blurred — never a
+1px outline standing in for depth, and never a hard-edged neobrutalist block
+shadow. `shadow-glow` additionally tints from the accent
+(`rgba(104,69,232,0.55)`), so a primary action visibly "lifts" toward the
+brand color; `shadow-card` stays neutral black so ordinary content (posts,
+comments) doesn't compete with it.
 
 ## Shapes
 
-Zero border-radius anywhere in the build (`rounded-none` is the implicit default; the only `rounded-full` uses are on avatar images, which are circular photo frames, not UI chrome). All interactive controls (buttons, inputs) are rectangular with 1px hairline borders in ink at varying opacity — no fill at rest, ink-filled on hover for primary actions.
+Cards: `rounded-2xl`/`rounded-3xl`. Buttons and pills: fully rounded
+(`rounded-full`). No sharp-cornered interactive control anywhere in the
+build.
 
 ## Components
 
 ### Buttons
-- **Shape:** rectangular, 0px radius, 1px ink border (`border-ink` at full opacity for the primary/only button style; nav's logout and error-state retry buttons use a softer `border-ink/25`–`border-ink/40`).
-- **Primary (submit/follow/like):** transparent background, ink text/border at rest; on hover, background and border invert to solid ink with paper-colored text (`hover:bg-ink hover:text-paper`). Padding scales with context: `px-3 py-1` (compact, like/comment controls) up to `px-4 py-2` (login submit).
-- **Disabled:** border and text drop to `ink/25` and `ink-soft`; hover invert is suppressed (`disabled:hover:bg-transparent`); cursor becomes `not-allowed`.
-- **Active/liked (like button only):** border and text switch to the accent color (`border-accent text-accent`) — the single place any button carries color.
+- **Primary (submit/follow/paylaş/gönder):** `bg-linear-to-r from-accent-strong to-accent-2`,
+  white text, `shadow-glow`, `min-h-11` (44px — the verified touch-target
+  floor on every pill and submit control, checked with real
+  `getBoundingClientRect()` measurements, not eyeballed).
+- **Disabled:** swaps the gradient to a **flat** `surface-2` fill with
+  `text-soft` label color (`disabled:from-surface-2 disabled:to-surface-2`)
+  rather than dimming the gradient with `opacity`. A finish review measured
+  the earlier `opacity-30` approach at ~2.6:1 contrast — fading a light label
+  and a colored fill together crushes contrast long before the button looks
+  "disabled enough." The flat-swap fixes this at the shared root (five call
+  sites) rather than tuning an opacity value that would have drifted again
+  the next time the gradient changed.
+- **Ghost (like/comment/logout/retry, unliked state):** transparent,
+  `border-border`, `text-soft`; hover swaps border+text to `accent`.
+- **Liked (like button only):** the one ghost control that fills solid with
+  the gradient — the single place in the whole app where "liked" and "the
+  brand accent" are the same visual event.
 
-### Inputs / Fields
-- **Style:** no boxed input anywhere. Auth-form fields (email/password) and the comment field are bottom-border-only (`border-0 border-b border-ink/25`), transparent background, flush to the label above. The composer's textarea has no border at all and sits directly on the `.ruled` notebook-line background.
-- **Focus:** border-bottom darkens to full ink (`focus:border-ink`); the composer textarea has no visible focus ring, relying on the ruled background and cursor.
-- **Placeholder:** `text-ink-soft`.
+### Inputs
+- Boxed, `rounded-xl`, `border-border`, `bg-bg/50`, `focus:border-accent`.
+  `min-h-11` on every text input for the same touch-target floor as buttons.
+- Comment field and its send button are both `rounded-full` (pill row)
+  instead of the boxed auth-form style, matching the lighter, inline feel of
+  a reply composer versus a full auth form.
 
-### Navigation
-`Navbar` is a single hairline-bottomed bar (`border-b border-ink/15`) at `max-w-2xl`. The wordmark is the one sans, semibold, larger-than-chrome element in the whole app. The rest of the nav (own handle, logout) is mono chrome text, `hover:text-ink` for the plain link and a bordered ink button for logout — no active/current-page indicator beyond that.
+### Cards (posts, composer, comment threads, auth forms, profile header)
+`rounded-2xl`/`rounded-3xl` `surface` background, `border-border`,
+`shadow-card`. No nested cards — a post card's like/comment controls are
+pills sitting directly on the card surface, not sub-cards.
 
-### Ink-Stamp Icon System (signature component)
-`src/components/icons.tsx` — `LikeStamp` and `CommentStamp`. Both are small (15×15) hand-drawn-feeling SVGs: a circular ring plus a simple interior glyph (a heart-like double-curve for like, three ruled lines for comment), stroked in `currentColor` so they inherit the parent button's ink/accent state. This is a deliberate ink-stamp mark system, not a generic icon library (no Lucide/Heroicons) and not a bare emoji/Unicode glyph standing in for a control. `LikeStamp` fills solid when `filled` (liked); `CommentStamp` has no filled state.
+### Ink-Stamp Icon System
+`src/components/icons.tsx` — `LikeStamp` (heart) and `CommentStamp` (speech
+bubble), both authored stroke SVGs using `currentColor`, `aria-hidden`. Not a
+generic icon library, not an emoji/Unicode glyph standing in for a control.
 
-### Ticking Count (signature interaction)
-`src/components/TickingCount.tsx` — every count that can change (likes, comments, follower/following/post-count) re-keys on `value` change to replay a CSS scale-pulse (`.tick`, 260ms ease-out, `scale(1.35 → 1)`) instead of the number snapping instantly. Only the like count passes `accent`, which additionally flashes the number to the accent color mid-pulse (`.tick-accent`) — because that count already sits next to the liked-state accent color on the button. Every other counter (comments, followers, following, post count) ticks in plain ink. This asymmetry is load-bearing: it is what keeps the accent reserved for "liked," rather than becoming a generic "this number changed" signal.
+### Ticking Count
+`src/components/TickingCount.tsx` — every count that can change (likes,
+comments, follower/following/post stats) re-keys on value change and plays
+one `.tick` scale-pulse (`240ms`, `scale(1.3 → 1)`). Applied uniformly — no
+special-cased color flash on any one counter, since the accent's reservation
+is already carried by the like button's fill state, not by the number.
+
+## Browser Surfaces
+
+Themed per `src/index.css`: text selection (`::selection`) uses
+`accent-strong`; the custom scrollbar thumb is `border-strong`, brightening
+to `accent` on hover; every focusable element gets a 2px `accent`
+`outline` via `:focus-visible`; text inputs get an `accent` caret color.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep post content and bios in the sans stack (`font-sans`/default body) and all structural chrome (timestamps, handles, counts, labels, nav) in `font-mono-chrome`.
-- **Do** close every entry/section with a hairline `border-*-ink/NN` rule rather than a card or shadow.
-- **Do** reserve the accent (`#c1440e`) for the liked state only; every other emphasis (errors, disabled, hover) stays ink-valued.
-- **Do** make every count that can change re-key and play the `.tick` scale-pulse on update rather than snapping.
-- **Do** keep buttons and inputs at 0px radius with 1px ink-opacity borders, filling to solid ink only on hover for primary actions.
+- **Do** reserve the gradient for primary actions, the liked state, and
+  follow/submit — everywhere else stays neutral ink/soft-text.
+- **Do** use `accent` (light) for text/links/icons on dark surfaces and
+  `accent-strong`/`accent-2` (deep) only for gradient fills behind white
+  text — never swap the two roles.
+- **Do** keep every button, pill, and text input at `min-h-11` (44px).
+- **Do** swap a disabled gradient button to a flat `surface-2` fill with
+  `text-soft` label — never dim the gradient with `opacity`.
+- **Do** give every card real offset-and-blurred shadow depth
+  (`shadow-card`/`shadow-glow`), never a flat outline standing in for it.
 
 ### Don't:
-- **Don't** introduce a size ladder for hierarchy (display/headline/title steps). Rank is carried by weight, case, and mono-vs-sans choice — confirmed by the build's two-size-only type system.
-- **Don't** add box-shadow, card surfaces, or rounded corners to any new component; the build has zero instances of any of the three.
-- **Don't** use the accent color for links, focus states, primary-button fills, or generic "success" — it is spent entirely on the liked state.
-- **Don't** pull in a generic icon library (Lucide/Heroicons/emoji glyphs) for new controls; extend the ink-stamp SVG pattern in `icons.tsx` (ring + simple interior glyph, `currentColor`-stroked) instead.
-- **Don't** add a second font-loading path (a Google Fonts `<link>`, another `@fontsource` package) for body text — Public Sans is already self-hosted via `src/main.tsx`'s `@fontsource/public-sans` imports; reuse that import, don't duplicate it.
+- **Don't** put gradient text (`bg-clip-text`) anywhere — emphasis comes from
+  weight, size, or a single solid-colored glyph.
+- **Don't** add a second display face; Space Grotesk is already self-hosted
+  via `src/main.tsx`'s `@fontsource/space-grotesk` imports.
+- **Don't** pull in a generic icon library or an emoji glyph for a new
+  control; extend the ring-and-glyph pattern in `icons.tsx`.
+- **Don't** nest a card inside a card; post actions are pills on the card
+  surface, not sub-cards.
+- **Don't** reach for a hard-edged block shadow — this world's depth is
+  always soft and blurred, tinted from the accent only on primary actions.

@@ -27,52 +27,54 @@ export function RegisterPage() {
   }
 
   return (
-    <div className="mx-auto flex max-w-sm flex-col gap-6 px-4 py-16">
-      <h1 className="font-mono-chrome text-xs uppercase tracking-widest text-ink-soft">kayıt</h1>
-      <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-        <label className="flex flex-col gap-1">
-          <span className="font-mono-chrome text-[11px] uppercase tracking-wide text-ink-soft">kullanıcı adı</span>
-          <input
-            type="text"
-            required
-            minLength={3}
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="border-0 border-b border-ink/25 bg-transparent px-0 py-1.5 text-ink focus:border-ink focus:outline-none"
-          />
-        </label>
-        <label className="flex flex-col gap-1">
-          <span className="font-mono-chrome text-[11px] uppercase tracking-wide text-ink-soft">e-posta</span>
-          <input
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="border-0 border-b border-ink/25 bg-transparent px-0 py-1.5 text-ink focus:border-ink focus:outline-none"
-          />
-        </label>
-        <label className="flex flex-col gap-1">
-          <span className="font-mono-chrome text-[11px] uppercase tracking-wide text-ink-soft">şifre</span>
-          <input
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="border-0 border-b border-ink/25 bg-transparent px-0 py-1.5 text-ink focus:border-ink focus:outline-none"
-          />
-        </label>
-        {error && <InlineError>{error}</InlineError>}
-        <button
-          type="submit"
-          disabled={submitting}
-          className="border border-ink px-4 py-2 font-medium text-ink hover:bg-ink hover:text-paper disabled:cursor-not-allowed disabled:border-ink/25 disabled:text-ink-soft disabled:hover:bg-transparent"
-        >
-          {submitting ? "kaydediliyor…" : "kayıt ol"}
-        </button>
-      </form>
-      <p className="font-mono-chrome text-xs text-ink-soft">
+    <div className="mx-auto mt-16 max-w-sm px-4">
+      <div className="shadow-card rounded-3xl border border-border bg-surface p-8">
+        <h1 className="font-display text-2xl font-semibold text-text">kayıt ol</h1>
+        <form className="mt-6 flex flex-col gap-4" onSubmit={handleSubmit}>
+          <label className="flex flex-col gap-1.5">
+            <span className="text-xs font-medium uppercase tracking-wide text-text-soft">kullanıcı adı</span>
+            <input
+              type="text"
+              required
+              minLength={3}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="min-h-11 rounded-xl border border-border bg-bg/50 px-4 text-text focus:border-accent focus:outline-none"
+            />
+          </label>
+          <label className="flex flex-col gap-1.5">
+            <span className="text-xs font-medium uppercase tracking-wide text-text-soft">e-posta</span>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="min-h-11 rounded-xl border border-border bg-bg/50 px-4 text-text focus:border-accent focus:outline-none"
+            />
+          </label>
+          <label className="flex flex-col gap-1.5">
+            <span className="text-xs font-medium uppercase tracking-wide text-text-soft">şifre</span>
+            <input
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="min-h-11 rounded-xl border border-border bg-bg/50 px-4 text-text focus:border-accent focus:outline-none"
+            />
+          </label>
+          {error && <InlineError>{error}</InlineError>}
+          <button
+            type="submit"
+            disabled={submitting}
+            className="shadow-glow mt-2 flex min-h-11 items-center justify-center rounded-xl bg-linear-to-r from-accent-strong to-accent-2 font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:from-surface-2 disabled:to-surface-2 disabled:text-text-soft disabled:shadow-none"
+          >
+            {submitting ? "kaydediliyor…" : "kayıt ol"}
+          </button>
+        </form>
+      </div>
+      <p className="mt-6 text-center text-sm text-text-soft">
         zaten hesabın var mı?{" "}
-        <Link to="/login" className="text-ink underline">
+        <Link to="/login" className="font-medium text-accent hover:underline">
           giriş yap
         </Link>
       </p>

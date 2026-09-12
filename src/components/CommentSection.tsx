@@ -7,16 +7,13 @@ import { InlineError, describeApiError } from "./StateViews";
 
 function CommentItem({ comment }: { comment: Comment }) {
   return (
-    <div className="border-t border-ink/10 py-3">
-      <Link
-        to={`/profile/${comment.profiles.username}`}
-        className="font-mono-chrome text-xs text-ink hover:underline"
-      >
+    <div className="border-t border-border py-3 first:border-t-0">
+      <Link to={`/profile/${comment.profiles.username}`} className="text-sm font-medium text-text hover:text-accent">
         @{comment.profiles.username}
       </Link>
-      <p className="mt-1 text-sm text-ink">{comment.content}</p>
+      <p className="mt-1 text-sm text-text">{comment.content}</p>
       {comment.replies.length > 0 && (
-        <div className="ml-4 mt-2 border-l border-ink/10 pl-4">
+        <div className="ml-4 mt-2 border-l border-border pl-4">
           {comment.replies.map((reply) => (
             <CommentItem key={reply.id} comment={reply} />
           ))}
@@ -39,9 +36,9 @@ export function CommentSection({ postId, comments }: { postId: string; comments:
   });
 
   return (
-    <div className="px-4">
+    <div className="shadow-card mt-4 rounded-2xl border border-border bg-surface p-4">
       <form
-        className="flex gap-2 border-t border-ink/15 py-3"
+        className="flex gap-2"
         onSubmit={(e) => {
           e.preventDefault();
           if (content.trim()) mutation.mutate();
@@ -51,24 +48,22 @@ export function CommentSection({ postId, comments }: { postId: string; comments:
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="yorum yaz…"
-          className="flex-1 border-0 border-b border-ink/25 bg-transparent px-0 py-1.5 text-sm text-ink placeholder:text-ink-soft focus:border-ink focus:outline-none"
+          className="min-h-11 flex-1 rounded-full border border-border bg-bg/50 px-4 text-sm text-text placeholder:text-text-soft focus:border-accent focus:outline-none"
         />
         <button
           type="submit"
           disabled={!content.trim() || mutation.isPending}
-          className="border border-ink px-3 py-1.5 text-sm font-medium text-ink hover:bg-ink hover:text-paper disabled:cursor-not-allowed disabled:border-ink/25 disabled:text-ink-soft disabled:hover:bg-transparent"
+          className="inline-flex min-h-11 items-center justify-center rounded-full bg-linear-to-r from-accent-strong to-accent-2 px-4 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:from-surface-2 disabled:to-surface-2 disabled:text-text-soft"
         >
           gönder
         </button>
       </form>
       {mutation.isError && (
-        <div className="pb-2">
+        <div className="pt-2">
           <InlineError>{describeApiError(mutation.error)}</InlineError>
         </div>
       )}
-      {comments.map((comment) => (
-        <CommentItem key={comment.id} comment={comment} />
-      ))}
+      {comments.length > 0 && <div className="mt-2">{comments.map((comment) => <CommentItem key={comment.id} comment={comment} />)}</div>}
     </div>
   );
 }

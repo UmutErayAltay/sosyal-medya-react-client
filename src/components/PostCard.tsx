@@ -40,37 +40,47 @@ export function PostCard({ post }: { post: Post }) {
   }
 
   return (
-    <article className="border-b border-ink/15 px-4 py-4">
-      <div className="flex items-baseline gap-2">
+    <article className="shadow-card mb-4 rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-border-strong">
+      <div className="flex items-center gap-3">
         <img
           src={post.profiles.avatar_url ?? "https://api.dicebear.com/9.x/identicon/svg?seed=" + post.profiles.username}
           alt=""
-          className="h-7 w-7 self-center rounded-full border border-ink/30 object-cover grayscale contrast-125"
+          className="h-10 w-10 rounded-full object-cover ring-2 ring-border-strong"
         />
-        <Link to={`/profile/${post.profiles.username}`} className="font-mono-chrome text-xs text-ink hover:underline">
-          @{post.profiles.username}
-        </Link>
-        <span className="font-mono-chrome text-xs text-ink-soft">· {timeAgo(post.created_at)}</span>
+        <div className="flex min-w-0 flex-col leading-tight">
+          <Link to={`/profile/${post.profiles.username}`} className="truncate text-sm font-medium text-text hover:text-accent">
+            @{post.profiles.username}
+          </Link>
+          <span className="font-mono text-xs text-text-soft">{timeAgo(post.created_at)}</span>
+        </div>
       </div>
 
-      <p className="mt-2 whitespace-pre-wrap leading-6 text-ink">{post.content}</p>
+      <p className="mt-3 whitespace-pre-wrap text-[15px] leading-relaxed text-text">{post.content}</p>
 
       {post.image_urls && post.image_urls.length > 0 && (
-        <img src={post.image_urls[0]} alt="" className="mt-3 max-h-96 w-full border border-ink/15 object-cover" />
+        <img
+          src={post.image_urls[0]}
+          alt=""
+          className="mt-3 max-h-[480px] w-full rounded-xl border border-border object-cover"
+        />
       )}
 
-      <div className="mt-3 flex items-center gap-4 font-mono-chrome text-xs text-ink-soft">
+      <div className="mt-4 flex items-center gap-2">
         <button
           type="button"
           onClick={handleLike}
-          className={`flex items-center gap-1.5 border border-ink/20 px-2 py-1 hover:border-ink ${liked ? "border-accent text-accent" : ""}`}
+          className={
+            liked
+              ? "shadow-glow flex min-h-11 items-center gap-1.5 rounded-full bg-linear-to-r from-accent-strong to-accent-2 px-3 text-sm font-medium text-white"
+              : "flex min-h-11 items-center gap-1.5 rounded-full border border-border px-3 text-sm text-text-soft transition-colors hover:border-accent hover:text-accent"
+          }
         >
           <LikeStamp filled={liked} />
-          <TickingCount value={count} accent />
+          <TickingCount value={count} />
         </button>
         <Link
           to={`/post/${post.id}`}
-          className="flex items-center gap-1.5 border border-ink/20 px-2 py-1 hover:border-ink"
+          className="flex min-h-11 items-center gap-1.5 rounded-full border border-border px-3 text-sm text-text-soft transition-colors hover:border-accent hover:text-accent"
         >
           <CommentStamp />
           <TickingCount value={post.comment_count} />

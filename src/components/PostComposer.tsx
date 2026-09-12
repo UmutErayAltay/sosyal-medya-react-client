@@ -17,29 +17,26 @@ export function PostComposer() {
 
   return (
     <form
-      className="border-b border-ink/15 px-4 pb-4 pt-3"
+      className="shadow-card mb-4 rounded-2xl border border-border bg-surface p-4"
       onSubmit={(e) => {
         e.preventDefault();
         if (content.trim()) mutation.mutate();
       }}
     >
-      <div className="mb-1 font-mono-chrome text-[11px] uppercase tracking-wide text-ink-soft">
-        yeni kayıt
-      </div>
       <textarea
         value={content}
         onChange={(e) => setContent(e.target.value)}
         placeholder="Neler oluyor?"
         rows={3}
         maxLength={2000}
-        className="ruled w-full resize-none border-0 p-0 leading-7 text-ink placeholder:text-ink-soft focus:outline-none"
+        className="w-full resize-none rounded-xl border border-transparent bg-bg/50 p-3 text-[15px] text-text placeholder:text-text-soft focus:border-accent focus:outline-none"
       />
-      <div className="mt-2 flex items-center justify-between border-t border-ink/10 pt-2">
+      <div className="mt-3 flex items-center justify-between">
         {mutation.isError ? <InlineError>{describeApiError(mutation.error)}</InlineError> : <span />}
         <button
           type="submit"
           disabled={!content.trim() || mutation.isPending}
-          className="border border-ink px-3 py-1 text-sm font-medium text-ink hover:bg-ink hover:text-paper disabled:cursor-not-allowed disabled:border-ink/25 disabled:text-ink-soft disabled:hover:bg-transparent"
+          className="shadow-glow inline-flex min-h-11 items-center justify-center rounded-full bg-linear-to-r from-accent-strong to-accent-2 px-4 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:from-surface-2 disabled:to-surface-2 disabled:text-text-soft disabled:shadow-none"
         >
           {mutation.isPending ? "paylaşılıyor…" : "paylaş"}
         </button>

@@ -11,12 +11,12 @@ export function FeedPage() {
   });
 
   return (
-    <div className="mx-auto max-w-2xl border-l border-ink/10">
+    <div className="mx-auto max-w-xl px-4 py-6">
       <PostComposer />
       {isLoading && <LoadingState label="akış yükleniyor…" />}
       {isError && <ErrorState error={error} onRetry={() => refetch()} />}
       {data && data.posts.length === 0 && (
-        <p className="px-4 py-10 text-center font-mono-chrome text-xs text-ink-soft">
+        <p className="rounded-2xl border border-dashed border-border py-16 text-center text-sm text-text-soft">
           henüz kayıt yok — ilk paylaşımı sen yap.
         </p>
       )}

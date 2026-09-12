@@ -14,7 +14,7 @@ Register/login, feed (list + create text posts), like, comment, profile view + f
 
 ## Design
 
-Visual direction ("field notebook / lab log" — see `.impeccable/surfaces/app.md`) was picked via the `impeccable` design skill's direction roll rather than a default template look: a working record of activity, not a card-based feed. No rounded cards, no gradients — flush-left dated entries, monospace metadata, one accent color reserved for the liked state.
+Visual direction ("Afterhours" — see `DESIGN.md` and `.impeccable/surfaces/app.md`), built with the `impeccable` design skill: a dark-first social feed rather than a light SaaS default. Layered near-black surfaces, self-hosted Space Grotesk/Inter type, and one indigo-to-magenta gradient accent reserved for primary actions and the liked state. This replaced an earlier lighter "field notebook" direction after real use showed it reading as flat and washed-out; an independent finish review (contrast measurements, touch-target sizing, states) ran before this shipped.
 
 ## Run it
 

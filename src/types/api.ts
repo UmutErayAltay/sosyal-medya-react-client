@@ -102,14 +102,18 @@ export interface ProfileResponse {
   liked_posts?: Post[];
   bookmarked_posts?: Post[];
   archived_posts?: Post[];
-  followers_count: number;
-  following_count: number;
   is_following: boolean;
   is_pending_request: boolean;
   is_private: boolean;
   is_blocked_by_me: boolean;
   is_self: boolean;
   deactivated?: boolean;
+  stats: {
+    posts: number;
+    followers: number;
+    following: number;
+    likes: number;
+  };
 }
 
 export interface FollowResponse {
