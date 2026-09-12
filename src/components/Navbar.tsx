@@ -8,7 +8,7 @@ export function Navbar() {
     <header className="border-b border-ink/15 bg-paper">
       <div className="mx-auto flex max-w-2xl items-center justify-between px-4 py-3">
         <Link to="/" className="text-lg font-semibold tracking-tight text-ink">
-          sosyal<span className="text-accent">.</span>log
+          sosyal.log
         </Link>
         {user && (
           <nav className="flex items-center gap-4 font-mono-chrome text-xs text-ink-soft">
