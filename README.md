@@ -1,34 +1,50 @@
 # sosyal.log
 
-A React + TypeScript client for [Sosyal-Medya-Web](https://github.com/UmutErayAltay/Sosyal-Medya-Web) — a real, already-deployed Flask/Supabase social platform (306 commits, 300+ tests, a native Android client on the same API). This is a third, independent client against that same live REST API: auth, a feed with post creation, likes, comments, and profiles with follow.
+Türkçe · [English](README.en.md)
 
-It exists to be real, checkable evidence behind a portfolio claim, not a demo — every screen here is a real request against `https://sosyalmedyadeneme.onrender.com`, no mocked data.
+## Açıklama
 
-## Stack
+sosyal.log, [Sosyal-Medya-Web](https://github.com/UmutErayAltay/Sosyal-Medya-Web) backend'inin REST API'sine bağlanan bir React + TypeScript istemcisidir. Kayıt/giriş, akış, metin gönderisi paylaşma, beğeni, yorum ve profil + takip akışlarını kapsar. Sunucu durumu baştan sona TanStack Query ile yönetilir, oturum jetonu `localStorage`'da (`smrc_auth`) saklanır ve `src/lib/api.ts` içindeki küçük `fetch` sarmalayıcısı üzerinden `Authorization` başlığı olarak gönderilir. Backend zaten yayında çalışan gerçek bir Flask/Supabase uygulaması (300+ test, aynı API'yi kullanan yerel bir Android istemcisi ile) olduğu için bu, o API'ye konuşan üçüncü ve bağımsız istemcidir: amacı bir demo görüntüsü değil, portföy iddiasının arkasına konabilecek doğrulanabilir kanıt olmak.
 
-Vite + React 18 + TypeScript, React Router, TanStack Query for all server state, Tailwind CSS. Auth token in `localStorage`, injected via a small `fetch` wrapper (`src/lib/api.ts`).
+## Görseller
 
-## Scope (v1, deliberately)
+![Akış görünümü](docs/screenshots/feed-desktop.png)
 
-Register/login, feed (list + create text posts), like, comment, profile view + follow. The backend exposes ~100 more routes (messaging, stories, polls, reels, ...); this client intentionally doesn't surface them — see `PRODUCT.md` for why.
+![Profil görünümü](docs/screenshots/profile-desktop.png)
 
-## Design
+![Giriş ekranı](docs/screenshots/login-desktop.png)
 
-Visual direction ("Afterhours" — see `DESIGN.md` and `.impeccable/surfaces/app.md`), built with the `impeccable` design skill: a dark-first social feed rather than a light SaaS default. Layered near-black surfaces, self-hosted Space Grotesk/Inter type, and one indigo-to-magenta gradient accent reserved for primary actions and the liked state. This replaced an earlier lighter "field notebook" direction after real use showed it reading as flat and washed-out; an independent finish review (contrast measurements, touch-target sizing, states) ran before this shipped.
+## Yığın
 
-## Run it
+Vite + React 19 + TypeScript, React Router, sunucu durumu için TanStack Query, Tailwind CSS 4. Tipografi kendi barındırılan `@fontsource` paketleriyle geliyor (Space Grotesk + Inter), ikon kütüphanesi yok.
+
+## Kapsam (v1, bilinçli olarak dar)
+
+Kayıt/giriş, akış (liste + metin gönderisi paylaşma), beğeni, gönderi detayı ve yorum, profil görüntüleme + takip. Backend yaklaşık 100 rota daha sunuyor (mesajlaşma, hikâyeler, anketler, reel'ler, ...); bu istemci onları bilinçli olarak yüzeye çıkarmıyor — nedeni `PRODUCT.md` dosyasında.
+
+Birkaç sınır bilinçli: beğeni ve sayılar **iyimser (optimistic)** güncellenir, yani kalp ve sayaç ağdan dönmeden çevrilir, hata olursa geri alınır. Gönderi oluşturma arayüzü yalnızca metin kabul eder (`FormData` gönderildiği için API katmanına görsel/video eklemek ileride kolay) ve `visibility` şimdilik `public`. Yorumlar iç içe yanıtları da okur, ama bu istemci yanıt yazmayı sunmaz.
+
+## Tasarım
+
+Görsel yön ("Afterhours" — bkz. `DESIGN.md` ve `.impeccable/surfaces/app.md`), `impeccable` tasarım skill'iyle kuruldu: açık bir SaaS varsayılanı yerine koyu öncelikli bir sosyal akış. Katmanlı neredeyse siyah yüzeyler, kendi barındırılan Space Grotesk/Inter tipografisi ve yalnızca birincil eylemler ile beğenildi durumunda kullanılan indigo→macenta gradyan vurgu. Gerçek kullanım sonrası daha açık ve soluk okunan "field notebook" yönü bunun yerini aldı; yayına girmeden önce bağımsız bir bitiş incelemesi (kontrast ölçümleri, dokunma hedefi boyutları, durum kapsamı) koşuldu.
+
+Her hata durumu tasarlanmıştır: API hata kodları (`invalid_credentials`, `rate_limited`, `mfa_required`, ...) kullanıcıya gösterilen Türkçe mesajlara çevrilir, ham `Request failed with status code 500` sızmaz.
+
+## Çalıştır
 
 ```bash
 npm install
-cp .env.example .env   # point VITE_API_BASE_URL at a running backend
+cp .env.example .env   # VITE_API_BASE_URL'i çalışan bir backend'e yönlendir
 npm run dev
 ```
 
-By default `.env.example` points at `http://localhost:5000/api/v1` — run the [Sosyal-Medya-Web](https://github.com/UmutErayAltay/Sosyal-Medya-Web) backend locally (`python run.py`) with `API_CORS_ORIGINS=http://localhost:5173` in its `.env`, or point `VITE_API_BASE_URL` at the live backend once its CORS allow-list includes this client's deployed origin.
+Varsayılan olarak `.env.example` `http://localhost:5000/api/v1` adresine işaret eder — [Sosyal-Medya-Web](https://github.com/UmutErayAltay/Sosyal-Medya-Web) backend'ini lokalde çalıştırın (`python run.py`, `.env` dosyasında `API_CORS_ORIGINS=http://localhost:5173`), ya da `VITE_API_BASE_URL`'yi canlı backend'e yönlendirin; bu durumda backend'in CORS izin listesine bu istemcinin dağıtılmış origin'ini eklemiş olmanız gerekir.
 
 ## Test
 
 ```bash
 npm test        # Vitest + React Testing Library + MSW
-npm run build   # type-check + production build
+npm run build   # tip kontrolü + production build
 ```
+
+`.github/workflows/ci.yml` her PR'da ve `main` dalına push'ta Node 22 ile `npm ci` → `npm test` → `npm run build` zincirini koşar.
