@@ -8,6 +8,8 @@ sosyal.log, [Sosyal-Medya-Web](https://github.com/UmutErayAltay/Sosyal-Medya-Web
 
 ## Görseller
 
+Aşağıdaki ekran görüntüleri kurgusal örnek verilerle çekilmiştir; gerçek kullanıcı, hesap veya gönderi içermez.
+
 ![Akış görünümü](docs/screenshots/feed-desktop.png)
 
 ![Profil görünümü](docs/screenshots/profile-desktop.png)

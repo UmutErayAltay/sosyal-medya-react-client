@@ -8,6 +8,8 @@ sosyal.log is a React + TypeScript client wired to the REST API of the [Sosyal-M
 
 ## Screenshots
 
+The screenshots below were captured with fictional sample data; they contain no real users, accounts, or posts.
+
 ![Feed view](docs/screenshots/feed-desktop.png)
 
 ![Profile view](docs/screenshots/profile-desktop.png)
